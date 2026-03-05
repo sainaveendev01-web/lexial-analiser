@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Compiler Simulation | Sai Naveen</title>
+    <style>
+        :root {
+            --bg: #000;
+            --card: #121212;
+            --border: #262626;
+            --blue: #0095f6;
+            --text: #fff;
+        }
+        body { background: var(--bg); color: var(--text); font-family: sans-serif; margin: 0; }
+        .nav { border-bottom: 1px solid var(--border); padding: 15px; text-align: center; font-weight: bold; }
+        .container { max-width: 900px; margin: 20px auto; display: grid; grid-template-columns: 1fr 300px; gap: 20px; }
+        .editor-section { background: var(--card); border: 1px solid var(--border); border-radius: 8px; }
+        .header { padding: 10px; display: flex; align-items: center; border-bottom: 1px solid var(--border); }
+        .circle { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(45deg, #f09433, #bc1888); margin-right: 10px; }
+        textarea { width: 100%; height: 300px; background: #000; color: #efefef; border: none; padding: 15px; font-family: monospace; outline: none; box-sizing: border-box; }
+        .footer-action { padding: 10px; border-top: 1px solid var(--border); }
+        .btn { background: var(--blue); color: #fff; border: none; padding: 8px 16px; border-radius: 5px; font-weight: 600; cursor: pointer; }
+        .sidebar-box { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 15px; margin-bottom: 20px; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div class="nav">CompilerGram</div>
+    <div class="container">
+        <div class="editor-section">
+            <div class="header"><div class="circle"></div><strong>sai_naveen</strong></div>
+            <textarea id="code">int main() {
+    int x = 10 + 20;
+    return x;
+}</textarea>
+            <div class="footer-action"><button class="btn" onclick="run()">Compile</button></div>
+        </div>
+        <div class="sidebar">
+            <div class="sidebar-box">
+                <strong style="color:#8e8e8e">LEXER OUTPUT</strong>
+                <div id="lexer-out" style="margin-top:10px">Ready...</div>
+            </div>
+            <div class="sidebar-box">
+                <strong style="color:#8e8e8e">REPORTS</strong>
+                <p>User: Sai Naveen</p>
+                <p>Reg: RA2311003050059</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        function run() {
+            const val = document.getElementById('code').value;
+            const tokens = val.match(/\w+|[+*={};()]/g) || [];
+            document.getElementById('lexer-out').innerHTML = tokens.map(t => `<span style="color:#0095f6">${t}</span>`).join(' ');
+        }
+    </script>
+</body>
+</html>
